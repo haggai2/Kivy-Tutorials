@@ -1,0 +1,148 @@
+#kivy 2.0.0
+
+WindowManager:
+	LoginWindow:
+	ProfileWindow:
+
+
+
+<ActionBar>:
+	padding: '2sp'
+	canvas:
+		Color: 
+			rgba: self.background_color
+		BorderImage:
+			pos: self.pos
+			size: self.size
+			source: self.background_image
+
+
+<LoginWindow>:
+	name: 'Login'
+
+	email: email
+	password: password
+
+    canvas.before:
+        Color: 
+        	rgba: .94,1,.9, 1
+        Rectangle:
+        	pos: self.pos
+        	size: self.size
+
+
+################## Login Window ###########################
+
+    FloatLayout:
+
+
+    	Label:
+    		color: 1, 0, 0, 1
+    		text: 'Email: '
+    		font_size: 40
+    		pos_hint: {'x':-.3, 'y':.4}
+    	TextInput:
+    		id: email
+    		multiline: False
+    		size_hint: (.5,.05)
+    		pos_hint: {'x':.28, 'y':.87}
+    	Label:
+    		color: 1, 0, 0, 1
+    		text: 'Password: '
+    		font_size: 40
+    		pos_hint: {'x':-.35, 'y':.3}
+    	TextInput:
+    		id: password
+    		multiline: False
+    		size_hint: (.5, .05)
+    		pos_hint: {'x':.28, 'y':.765}
+		Button:
+			background_color: (.75, 0, .82, 1)
+			pos_hint: {'x':.35, 'y':.55}
+			size_hint:(.3, .15)
+			text: 'Login'
+			on_press: 
+				root.loginbtn()
+			on_release:
+				app.root.current = 'Profile' if root.loginbtn() == True else "Login"
+		Label:
+			color: 1,0,0,1
+			text: 'Create An Account:'
+			font_size: 40
+			pos_hint: {'x':0, 'y':-.08}
+		Button:
+			background_color: .75, 0, .7, .9
+			pos_hint: {'x':.35, 'y':.17}
+			size_hint: (.3, .15)
+			text: 'Create a Host Account'
+			on_release:
+				app.root.current = 'CreateHostAccount'
+
+		Button:
+			background_color: .75,0,.7,.9
+			pos_hint: {'x':.35, 'y':.01}
+			size_hint: (.3, .15)
+			text: 'Create a User Account'
+			on_release:
+				app.root.current = 'CreateUserAccount'
+
+##############################################################
+
+
+################## PROFILE PAGE ############################
+
+<ProfileWindow>:
+	name: 'Profile'
+
+    canvas.before:
+        Color: 
+        	rgba: .94,1,.9, 1
+        Rectangle:
+        	pos: self.pos
+        	size: self.size
+
+	FloatLayout:
+
+		ActionBar:
+			pos: (0,0)
+			size_hint: (1, 0.1)
+			background_color: 0, .02, .9, .5
+
+			ActionView:
+				id: av
+
+				ActionPrevious:
+					with_previous: False
+					title: 'Learning Action Bars in Kivy'
+					app_icon: ''
+
+				ActionButton:
+					id: btn_SignOut
+					text: ''
+					icon: '/Users/foxcoding/Desktop/TestApp/icons/signout.png'
+					on_release:
+						app.root.current = 'Login'
+
+				ActionButton:
+					id: btn_SignOut
+					text: ''
+					icon: '/Users/foxcoding/Desktop/TestApp/icons/profile.png'
+					on_release:
+						app.root.current = 'Login'
+
+		Label:
+			color: 1, 0, 0, 1
+			text: 'This will be your profile page'
+			font_size: 40
+
+
+
+#######################################################
+
+
+
+
+
+
+
+
